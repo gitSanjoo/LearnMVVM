@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
 //        mainviewmodel= ViewModelProviders.of(this).get(Mainviewmodel.class);
 //        mainBinding.setCustomer(mainviewmodel.getCustomer());
 
-      Log.d("lifecycle","onCreate() method executed");
+      Log.d("lifecycle","MainActivity::onCreate() method executed");
     }
     protected void onStart() {
 
@@ -45,23 +45,23 @@ public class MainActivity extends AppCompatActivity {
     }protected void onResume() {
 
         super.onResume();
-        Log.d("lifecycle","onResume() method executed");
+        Log.d("lifecycle","MainActivity::onResume() method executed");
     }protected void onPause() {
 
         super.onPause();
-        Log.d("lifecycle","onPause() method executed");
+        Log.d("lifecycle","MainActivity::onPause() method executed");
     }protected void onStop() {
 
         super.onStop();
-        Log.d("lifecycle","onStop() method executed");
+        Log.d("lifecycle","MainActivity::onStop() method executed");
     }protected void onRestart() {
 
         super.onRestart();
-        Log.d("lifecycle","onRestart() method executed");
+        Log.d("lifecycle","MainActivity::onRestart() method executed");
     }protected void onDestroy() {
 
         super.onDestroy();
-        Log.d("lifecycle","onDestroy() method executed");
+        Log.d("lifecycle","MainActivity::onDestroy() method executed");
     }
     public void goToFragment1(View view){
         replaceFragment(new fragment1());

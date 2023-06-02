@@ -1,10 +1,13 @@
 package com.sanjoo.learnmvvm.fragments;
 
+import android.content.Context;
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,11 +37,83 @@ public class fragment3 extends Fragment {
                 btn.setVisibility(View.GONE);
             }
         });
+        Log.d("lifecycle","fragment3::onActivityCreated() method executed");
 
-     return view;
+
+        return view;
 }
     private void replaceFragment(Fragment fragment){
 
     }
+    public  void onAttach(Context context) {
 
+        super.onAttach(context);
+        Log.d("lifecycle","fragment13::onAttach() method executed");
+
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        Log.d("lifecycle","fragment3::onActivityCreated() method executed");
+
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        Log.d("lifecycle","fragment3::onCreate() method executed");
+
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        Log.d("lifecycle","fragment3::onStart() method executed");
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.d("lifecycle","fragment3::onResume() method executed");
+
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        Log.d("lifecycle","fragment3::onPause() method executed");
+
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        Log.d("lifecycle","fragment3::onStop() method executed");
+
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Log.d("lifecycle","fragment3::onDestroy() method executed");
+
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        Log.d("lifecycle","fragment3::onDestroyView() method executed");
+
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        Log.d("lifecycle","fragment3::onDetach() method executed");
+
+    }
 }
+
+
