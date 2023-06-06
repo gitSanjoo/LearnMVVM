@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:id="@+id/option_one"
+        android:title="option1"/>
+    <item android:id="@+id/option_two"
+        android:title="option2"/>
+    <item android:id="@+id/optionthree"
+        android:title="option3"/>
+    <item
+        android:id="@+id/option_four"
+        android:title="option4"
+        android:icon="@drawable/ic_vehicle"
+        app:showAsAction="always"/>
+
+</menu>
