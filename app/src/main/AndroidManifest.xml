@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -12,31 +14,35 @@
         android:theme="@style/Theme.LearnMVVM"
         tools:targetApi="31">
         <activity
-            android:name=".ContextMenuBar"
+            android:name="com.sanjoo.viewpager.LearViewPager"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name="com.sanjoo.retrofit.LearnRetrofit"
+            android:exported="false"></activity>
+        <activity
+            android:name="com.sanjoo.animation.LearnBatteryAnimation"
+            android:exported="false">
+
+        </activity>
+        <activity
+            android:name=".ContextMenuBar"
+            android:exported="false">
+
         </activity>
         <activity
             android:name=".PopUpMenuBar"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            android:exported="false" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
         <activity
             android:name=".OptionMenuBar"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            android:exported="false">
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 
