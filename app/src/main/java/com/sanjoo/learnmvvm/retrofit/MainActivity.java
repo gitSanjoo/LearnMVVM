@@ -1,30 +1,40 @@
-package com.sanjoo.learnmvvm.retrofit
+package com.sanjoo.learnmvvm.retrofit;
 
-import android.os.Bundle
-import android.util.Log
-import androidx.appcompat.app.AppCompatActivity
-import com.sanjoo.learnmvvm.R
-import com.sanjoo.learnmvvm.retrofit.models.User
-import java.io.IOException
+import androidx.appcompat.app.AppCompatActivity;
 
-class MainActivity : AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        getUsersFromApi()
+import android.content.Context;
+import android.os.Bundle;
+import android.util.Log;
+
+import com.sanjoo.learnmvvm.R;
+import com.sanjoo.learnmvvm.retrofit.models.User;
+
+import java.io.IOException;
+import java.util.List;
+
+import retrofit2.Retrofit;
+
+public class MainActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        getUsersFromApi();
     }
 
-    private fun initRetrofitApiService(): NetworkApi {
-        val retrofit = RetrofitInstance.getRetrofitInstance()
-        return retrofit.create(NetworkApi::class.java)
+    private NetworkApi initRetrofitApiService(){
+        Retrofit retrofit = RetrofitInstance.getRetrofitInstance();
+        NetworkApi api=retrofit.create(NetworkApi.class);
+        return api;
     }
 
-    private fun getUsersFromApi() {
+    private void getUsersFromApi(){
         try {
-            val users = initRetrofitApiService().users.execute().body()!!
-            Log.d("getUsersFromApiResult", users.toString())
-        } catch (e: IOException) {
-            e.printStackTrace()
+            List<User> users = initRetrofitApiService().getUsers().execute().body();
+            Log.d("getUsersFromApiResult",users.toString());
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }
