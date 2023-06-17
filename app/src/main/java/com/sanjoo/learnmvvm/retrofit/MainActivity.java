@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.sanjoo.learnmvvm.R;
 import com.sanjoo.learnmvvm.retrofit.models.User;
@@ -22,18 +23,18 @@ public class MainActivity extends AppCompatActivity {
         getUsersFromApi();
     }
 
-    NetworkApi initRetrofitApiService(){
-        Retrofit retrofit = RetrofitInstance.getRetrofitInstance(this);
+    private NetworkApi initRetrofitApiService(){
+        Retrofit retrofit = RetrofitInstance.getRetrofitInstance();
         NetworkApi api=retrofit.create(NetworkApi.class);
-
         return api;
     }
 
     private List<User> getUsersFromApi(){
         try {
-            initRetrofitApiService().getUser().execute().body();
+            List<User> users = initRetrofitApiService().getUsers().execute().body();
+            Log.d("getUsersFromApiResult",users.toString());
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
         return null;
     }
