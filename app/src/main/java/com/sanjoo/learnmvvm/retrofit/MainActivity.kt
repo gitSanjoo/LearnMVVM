@@ -1,40 +1,60 @@
-package com.sanjoo.learnmvvm.retrofit;
+package com.sanjoo.learnmvvm.retrofit
 
-import androidx.appcompat.app.AppCompatActivity;
+import android.os.Bundle
+import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.sanjoo.learnmvvm.R
+import com.sanjoo.learnmvvm.databinding.ActivityMainBinding
+import com.sanjoo.learnmvvm.retrofit.models.User
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import java.io.IOException
 
-import android.content.Context;
-import android.os.Bundle;
-import android.util.Log;
 
-import com.sanjoo.learnmvvm.R;
-import com.sanjoo.learnmvvm.retrofit.models.User;
 
-import java.io.IOException;
-import java.util.List;
 
-import retrofit2.Retrofit;
+class MainActivity : AppCompatActivity() {
 
-public class MainActivity extends AppCompatActivity {
+    lateinit var activityMainBinding : ActivityMainBinding
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        getUsersFromApi();
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        //setContentView(R.layout.activity_main)
+        activityMainBinding=DataBindingUtil.setContentView(this,R.layout.activity_main)
+        getUsersFromApi()
     }
 
-    private NetworkApi initRetrofitApiService(){
-        Retrofit retrofit = RetrofitInstance.getRetrofitInstance();
-        NetworkApi api=retrofit.create(NetworkApi.class);
-        return api;
+    private fun initRetrofitApiService(): NetworkApi {
+        val retrofit = RetrofitInstance.getRetrofitInstance()
+        return retrofit.create(NetworkApi::class.java)
     }
 
-    private void getUsersFromApi(){
-        try {
-            List<User> users = initRetrofitApiService().getUsers().execute().body();
-            Log.d("getUsersFromApiResult",users.toString());
-        } catch (IOException e) {
-            e.printStackTrace();
+    private fun getUsersFromApi() {
+        lifecycleScope.launch(Dispatchers.IO) {
+            try {
+                val users = initRetrofitApiService().users.execute().body()
+                Log.d("getUsersFromApiResult", users.toString())
+                if (users != null) {
+                    initAdaptor(users)
+                }
+            } catch (e: IOException) {
+                e.printStackTrace()
+            }
+        }
+    }
+
+
+    private fun initAdaptor(users : List<User>){
+        lifecycleScope.launch(Dispatchers.Main) {
+            val recyclerView = activityMainBinding.recyclerView
+            recyclerView.layoutManager = LinearLayoutManager(this@MainActivity)
+            val adapter = UsersAdapter(users)
+            recyclerView.adapter = adapter
         }
     }
 }
