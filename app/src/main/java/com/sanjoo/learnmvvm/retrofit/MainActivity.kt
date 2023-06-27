@@ -35,6 +35,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun getUsersFromApi() {
+
+        //coroutine used here in Kotlin instead of multithreading in java
         lifecycleScope.launch(Dispatchers.IO) {
             try {
                 val users = initRetrofitApiService().users.execute().body()
