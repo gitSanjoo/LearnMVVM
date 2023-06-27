@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
 
     <application
         android:allowBackup="true"
+        android:name=".retrofit.Tablayout.service.ChannelClass"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
@@ -12,26 +14,36 @@
         android:theme="@style/Theme.LearnMVVM"
         tools:targetApi="31">
         <activity
-            android:name=".TestingActivity"
+            android:name=".retrofit.Tablayout.service.MainActivity"
             android:exported="true">
             <intent-filter>
-                <category android:name="android.intent.category.LAUNCHER" />
-
                 <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".ImageSharingActivity"
-            android:exported="false">
+<!--        <activity-->
+<!--            android:name=".TestingActivity"-->
+<!--            android:exported="true">-->
+<!--            <intent-filter>-->
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
 
-            <intent-filter>
-                <category android:name="android.intent.category.DEFAULT" />
+<!--                <action android:name="android.intent.action.MAIN" />-->
+<!--            </intent-filter>-->
+<!--        </activity>-->
+<!--        <activity-->
+<!--            android:name=".ImageSharingActivity"-->
+<!--            android:exported="false">-->
+<!--            <intent-filter>-->
+<!--                <category android:name="android.intent.category.DEFAULT" />-->
 
-                <action android:name="android.intent.action.SEND" />
+<!--                <action android:name="android.intent.action.SEND" />-->
 
-                <data android:mimeType="image/*" />
-            </intent-filter>
-        </activity>
+<!--                <data android:mimeType="image/*" />-->
+<!--            </intent-filter>-->
+<!--        </activity>-->
+
+        <service android:name=".retrofit.Tablayout.service.ServiceExample"/>
     </application>
 
 </manifest>
