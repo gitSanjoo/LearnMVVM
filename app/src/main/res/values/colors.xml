@@ -9,4 +9,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="red_light">#D86363</color>
     <color name="purple_650">#DD66F1</color>
+    <color name="pink">#C65BD8</color>
+    <color name="yellow">#FFEB3B</color>
 </resources>

@@ -44,6 +44,7 @@
 <!--        </activity>-->
 
         <service android:name=".retrofit.Tablayout.service.ServiceExample"/>
+        <service android:name=".retrofit.Tablayout.service.MusicService"/>
     </application>
 
 </manifest>
